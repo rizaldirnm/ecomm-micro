@@ -6,7 +6,7 @@ const commonConfig = require("./webpack.common");
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 8080,
+    port: 3030,
     historyApiFallback: {
       index: "index.html",
     },
@@ -17,6 +17,7 @@ const devConfig = {
       remotes: {
         marketing: "marketing@http://localhost:8081/remoteEntry.js",
       },
+      shared: ['react', 'react-dom'],
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
