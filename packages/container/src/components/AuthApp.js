@@ -1,4 +1,4 @@
-import { mount } from "marketing/MarketingApp"; // module federation
+import { mount } from "auth/AuthApp"; // module federation
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
