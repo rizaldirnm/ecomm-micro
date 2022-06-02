@@ -2,7 +2,7 @@ import { mount } from "auth/AuthApp"; // module federation
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
 
   const history = useHistory();
@@ -10,13 +10,16 @@ export default () => {
   // mounting MarketingApp reference to module federation
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
+      initialPath: history.location.pathname,
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
         if (pathname !== nextPathname) {
           history.push(nextPathname);
         }
       },
-      initialPath: history.location.pathname,
+      onSignIn: () => {
+        onSignIn()
+      },
     });
 
     history.listen(onParentNavigate);
